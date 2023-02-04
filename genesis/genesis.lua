@@ -1,8 +1,10 @@
--- premake5.lua
+include "commondirs.lua"
+include "extern.lua"
+
 workspace "framework"
 	configurations { "Debug", "Release" }
 	platforms { "Win64" }
-	location "../#projects"
+	location "%{ProjectGenFolder}"
 
 filter { "platforms:Win64" }
 	system "Windows"
@@ -11,11 +13,45 @@ filter { "platforms:Win64" }
 project "genesis"
 	kind "ConsoleApp"
 	language "C++"
-	targetdir "../#build/%{cfg.buildcfg}-%{cfg.platform}"
-	location "../#projects/genesis"
+	cppdialect "C++17"
+	targetdir "%{OutputFolder}/%{cfg.buildcfg}-%{cfg.platform}"
+	location "%{ProjectGenFolder}/%{prj.name}"
 
-	files { "../code/**.h", "../code/**.cpp" }
+	files 
+	{ 
+		"%{CodeFolder}/**.h", 
+		"%{CodeFolder}/**.cpp" 
+	}
+	
+	includedirs
+	{
+		"%{IncludeDirs.sdl2}",
+	}
 
+	libdirs
+	{
+		"%{LibraryDirs.sdl2}"
+	}
+
+	defines
+	{
+		"%{Defines.sdl2}"
+	}
+	
+	links
+	{
+		"%{Library.sdl2}",
+	}
+
+	postbuildcommands
+	{
+		"%{PostBuildEvent.sdl2}"
+	}
+
+	
+	filter "system:windows"
+		systemversion "latest"
+	
 	filter "configurations:Debug"
 		defines { "DEBUG" }
 		symbols "On"
