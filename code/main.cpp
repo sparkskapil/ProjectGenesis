@@ -1,5 +1,6 @@
 #include <iostream>
 #include "SDL.h"
+#include "spdlog/spdlog.h"
 
 const int Width = 800, Height = 600;
 int main()
@@ -9,7 +10,7 @@ int main()
 		SDL_WINDOW_ALLOW_HIGHDPI);
 	if (window == nullptr)
 	{
-		std::cout << "Could not create SDL window.";
+		spdlog::critical("Could not create SDL window.");
 		return -1;
 	}
 

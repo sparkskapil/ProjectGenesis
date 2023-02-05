@@ -26,6 +26,7 @@ project "genesis"
 	includedirs
 	{
 		"%{IncludeDirs.sdl2}",
+		"%{IncludeDirs.spdlog}",
 	}
 
 	libdirs

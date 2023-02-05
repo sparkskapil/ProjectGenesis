@@ -2,6 +2,7 @@ include "commondirs.lua"
 
 IncludeDirs = {}
 IncludeDirs["sdl2"] = "%{ExternFolder}/sdl2/include"
+IncludeDirs["spdlog"] = "%{ExternFolder}/spdlog/include"
 
 LibraryDirs = {}
 LibraryDirs["sdl2"] = "%{ExternFolder}/sdl2/lib/x64"
