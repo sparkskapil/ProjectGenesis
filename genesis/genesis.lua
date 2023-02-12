@@ -27,26 +27,34 @@ project "genesis"
 	{
 		"%{IncludeDirs.sdl2}",
 		"%{IncludeDirs.spdlog}",
+		"%{IncludeDirs.libassert}",
+		"%{IncludeDirs.glm}",
+		"%{IncludeDirs.VulkanSDK}",
 	}
 
 	libdirs
 	{
-		"%{LibraryDirs.sdl2}"
+		"%{LibraryDirs.sdl2}",
+		"%{LibraryDirs.libassert}",
+		"%{LibraryDirs.VulkanSDK}",
 	}
 
 	defines
 	{
-		"%{Defines.sdl2}"
+		"%{Defines.sdl2}",
 	}
 	
 	links
 	{
 		"%{Library.sdl2}",
+		"%{Library.libassert}",
+		"%{Library.Vulkan}",
+		"%{Library.VulkanUtils}",
 	}
 
 	postbuildcommands
 	{
-		"%{PostBuildEvent.sdl2}"
+		"%{PostBuildEvent.sdl2}",
 	}
 
 	
