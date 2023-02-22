@@ -1,11 +1,12 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <vector>
 #include "spdlog/spdlog.h"
 #include "SDL.h"
 #include "SDL_vulkan.h"
 #include "vulkan/vulkan.h"
-#include <vector>
+#include "assert.h"
 
 const uint32_t WIDTH = 800;
 const uint32_t HEIGHT = 600;
@@ -29,13 +30,7 @@ public:
             SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
             WIDTH, HEIGHT,
             SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_VULKAN);
-
-        if (m_Window == nullptr)
-        {
-            const char* error = "Could not create SDL window.";
-            spdlog::critical(error);
-            throw std::exception(error);
-        }
+        genCriticalAssert(m_Window != nullptr, "Could not create SDL window.");
     }
     
     void initVulkan()
@@ -87,12 +82,7 @@ public:
 
         createInfo.enabledLayerCount = 0;
 
-        if (vkCreateInstance(&createInfo, nullptr, &m_Instance) != VK_SUCCESS)
-        {
-            const char* error = "Failed to create instance!";
-            spdlog::critical(error);
-            throw std::runtime_error(error);
-        }
+        genCriticalAssert(vkCreateInstance(&createInfo, nullptr, &m_Instance) == VK_SUCCESS, "Failed to create instance!");
     }
 
 private:

@@ -14,7 +14,7 @@ LibraryDirs["VulkanSDK"] = "%{VulkanSDK}/Lib"
 
 Library = {}
 Library["sdl2"] = "SDL2.lib"
-Library["libassert"] = "assert.lib"
+Library["libassert"] = "assert.lib; dbghelp.lib"
 Library["Vulkan"] = "vulkan-1.lib"
 Library["VulkanUtils"] = "VkLayer_utils.lib"
 
