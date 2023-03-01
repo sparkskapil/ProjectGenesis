@@ -26,13 +26,13 @@ public:
     {
         SDL_Init(SDL_INIT_EVERYTHING);
 
-        m_Window = SDL_CreateWindow("Genesis", 
-            SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
+        m_Window = SDL_CreateWindow("Genesis",
+            SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
             WIDTH, HEIGHT,
             SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_VULKAN);
-        genCriticalAssert(m_Window != nullptr, "Could not create SDL window.");
+        genCriticalAssert(m_Window != nullptr, L"Could not create SDL window.");
     }
-    
+
     void initVulkan()
     {
         createInstance();
@@ -73,7 +73,7 @@ public:
 
         uint32_t sdlExtensionCount = 0;
         SDL_Vulkan_GetInstanceExtensions(m_Window, &sdlExtensionCount, NULL);
-        
+
         std::vector<const char*> sdlExtensions(sdlExtensionCount);
         SDL_Vulkan_GetInstanceExtensions(m_Window, &sdlExtensionCount, sdlExtensions.data());
 
@@ -82,7 +82,7 @@ public:
 
         createInfo.enabledLayerCount = 0;
 
-        genCriticalAssert(vkCreateInstance(&createInfo, nullptr, &m_Instance) == VK_SUCCESS, "Failed to create instance!");
+        genCriticalAssert(vkCreateInstance(&createInfo, nullptr, &m_Instance) == VK_SUCCESS, L"Failed to create instance!");
     }
 
 private:
@@ -96,7 +96,9 @@ int main()
 
     try
     {
+        log_info(L"Starting App");
         app.run();
+        log_info(L"Stopping App");
     }
     catch (const std::exception& e)
     {

@@ -13,7 +13,7 @@ filter { "platforms:Win64" }
 project "genesis"
 	kind "ConsoleApp"
 	language "C++"
-	cppdialect "C++17"
+	cppdialect "C++latest"
 	targetdir "%{OutputFolder}/%{cfg.buildcfg}-%{cfg.platform}"
 	location "%{ProjectGenFolder}/%{prj.name}"
 
@@ -68,3 +68,6 @@ project "genesis"
 	filter "configurations:Release"
 		defines { "NDEBUG" }
 		optimize "On"
+
+	group "Logger"
+		files {"%{CodeFolder}/Logger/*.h", "%{CodeFolder}/Logger/*.cpp"}
