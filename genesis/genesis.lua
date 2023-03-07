@@ -16,7 +16,8 @@ project "genesis"
 	cppdialect "C++latest"
 	targetdir "%{OutputFolder}/%{cfg.buildcfg}-%{cfg.platform}"
 	location "%{ProjectGenFolder}/%{prj.name}"
-
+	debugdir "%{OutputFolder}/%{cfg.buildcfg}-%{cfg.platform}"
+	
 	files 
 	{ 
 		"%{CodeFolder}/**.h", 
